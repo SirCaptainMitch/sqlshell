@@ -22,10 +22,10 @@ function Invoke-GlobalConfig() {
     process { 
         [pscustomobject]$ConfigObject = Get-Content -Raw -Path $ConfigPath | ConvertFrom-Json 
 
-        $global:sqlshell = $ConfigObject
+        $global:sqlshell = $ConfigObject | Select-Object -First 1
         $defaultLogPath = Join-Path -Path $ModuleRoot -ChildPath $ConfigObject.DefaultLogLocation
 
-        $global:sqlshell | Add-Member -NotePropertyName 'DefaultLogLocation' -NotePropertyValue $defaultLogPath -force 
+        $global:sqlshell.DefaultLogLocation = $defaultLogPath 
 
     }
 }
