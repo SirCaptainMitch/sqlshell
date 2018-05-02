@@ -4,18 +4,10 @@ function Write-Message() {
         [parameter(Mandatory=$true)]
         $message,
         [parameter(Mandatory=$true)]
-        [string]$level , 
-        [switch]
+        [string]$level
     )
 
     begin { 
-        if( $message -is [string]) { 
-            $IsString = $true 
-        } elif ($message -is [pscustomobject]) { 
-            $IsString = $false 
-        } else { 
-            Write-Error -Message "The message parameter must be a string or object."
-        }
     }
 
     process { 
@@ -23,6 +15,7 @@ function Write-Message() {
             'Host' {  Write-Host $message   } 
             'Output' { Write-Output $message } 
             'Warning' { Write-Warning $message }
+            'Verbose' { Write-Verbose $message }
         }
     }
 

@@ -1,7 +1,7 @@
 ﻿$ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
 Write-Debug "loading from $ScriptDir"
 
-foreach ($file in (Get-ChildItem ( Join-Path $ScriptDir ".\internal") -Filter "*.ps1")){
+foreach ($file in (Get-ChildItem ( Join-Path $ScriptDir ".\internal\function") -Filter "*.ps1")){
   Write-Debug "Loading $($file.FullName)"
   . $file.FullName
 }

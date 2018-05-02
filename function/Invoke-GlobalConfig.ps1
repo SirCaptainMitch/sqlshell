@@ -19,7 +19,9 @@ function Invoke-GlobalConfig() {
         }
     }
 
-    process { 
+    process {
+        Write-Message -message 'test' -level Verbose 
+
         [pscustomobject]$ConfigObject = Get-Content -Raw -Path $ConfigPath | ConvertFrom-Json 
 
         $global:sqlshell = $ConfigObject | Select-Object -First 1
